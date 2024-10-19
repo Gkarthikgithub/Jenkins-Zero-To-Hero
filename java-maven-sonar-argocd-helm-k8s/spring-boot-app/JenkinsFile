@@ -6,7 +6,7 @@ pipeline {
     }
   }
   tools {
-    jdk 'JDK 17'  // Ensures JDK 17 is used
+    jdk 'java17'  // Ensures JDK 17 is used
   }
   stages {
     stage('Checkout') {
