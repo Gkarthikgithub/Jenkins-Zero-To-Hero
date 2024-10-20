@@ -2,7 +2,7 @@ pipeline {
   agent any // Use any available agent instead of a Docker container
   
   tools {
-    jdk 'java17'  // Ensures JDK 17 is used
+    jdk 'jdk-17'  // Ensures JDK 17 is used
   }
   
   stages {
@@ -23,10 +23,10 @@ pipeline {
     
     stage('Static Code Analysis') {
       environment {
-        SONAR_URL = "http://3.89.21.12:9000"
+        SONAR_URL = "http://44.203.72.107:9000"
       }
       steps {
-        withCredentials([string(credentialsId: 'sonar-id', variable: 'SONAR_AUTH_TOKEN')]) {
+        withCredentials([string(credentialsId: 'OCIR', variable: 'SONAR_AUTH_TOKEN')]) {
           sh 'cd java-maven-sonar-argocd-helm-k8s/spring-boot-app && mvn sonar:sonar -Dsonar.login=$SONAR_AUTH_TOKEN -Dsonar.host.url=${SONAR_URL}'
         }
       }
